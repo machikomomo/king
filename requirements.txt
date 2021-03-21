@@ -1,2 +1,6 @@
 opencv-python~=4.5.1.48
 tensorflow==1.15
+tensorflow_hub
+numpy~=1.19.5
+Flask~=0.10
+Flask-Bootstrap~=3.2.0.2

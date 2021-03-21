@@ -3,11 +3,13 @@ import os
 
 import cv2
 
-heros = ['luna']
+# 待处理的角色列表
+heros = ['diaochan','shangguan','zhouyu']
 
 if __name__ == '__main__':
     for hero in heros:
-        path = '/Users/momochan/Downloads/king/' + hero + '/'
+        # 待处理图片的路径
+        path = '/Users/momochan/pythonProject/honor-of-king/images/' + hero + '/'
         path2 = path.replace(hero, hero + '_2')
         if not os.path.exists(path2):
             os.mkdir(path2)
