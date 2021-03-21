@@ -1,5 +1,9 @@
 import os
 
+import cv2
+
+from script.label import label
+
 import simplejson
 
 from flask import Flask, render_template, request
@@ -18,12 +22,12 @@ def gen_file_name(filename):
     i = 1
     # 在上方的app config中配置了一个上传目录，用户上传的图片都存到这个目录下
     # join表示路径拼接（tmp+文件名），如果这个路径已经存在了 就去给它编号加一，使他不要重名
-    while os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], filename)):
+    while os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], filename+".jpg")):
         # 通过split可以取到文件名以及扩展，类似233.txt txt就是扩展名 扩展名不能修改，去把文件名修改一下
-        name, extension = os.path.splitext(filename)
+        (name, extension) = os.path.splitext(filename)
         filename = '%s_%s%s' % (name, str(i), extension)
         i += 1
-    return filename
+    return filename+".jpg"
 
 
 @app.route("/upload", methods=['POST'])
@@ -38,6 +42,14 @@ def upload():
         uploaded_file_path = os.path.join(app.config['UPLOAD_FOLDER'],filename)
         files.save(uploaded_file_path)
 
+        img = cv2.imread(uploaded_file_path, 0)
+        if img.size != 921600:
+            img = cv2.resize(img, (1280, 720))
+        crop_img = img[447:550, 970:1085]
+        # 处理以后直接覆盖原文件，如下
+        cv2.imwrite(uploaded_file_path, crop_img)
+
+        (hero,rate) = label(uploaded_file_path)
 
         #return json for js call back 对于用户上传文件，我，服务器，要予以反馈
         return simplejson.dumps({
@@ -45,7 +57,7 @@ def upload():
             # json格式有点像key value的格式
             # 定义一个files的数组
             "files":[{
-                "name":"识别结果 : "
+                "name":"识别结果 : "+hero+" , 准确度 :" +str(rate)
             }]
         })
 

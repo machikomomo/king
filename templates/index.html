@@ -1,7 +1,14 @@
 {% extends "base.html" %}
+{% block title %}识别你的英雄{% endblock %}
 
 {% block page_content %}
 <div class="container">
+    <h1>See Hero</h1>
+<br>
+<blockquote>
+    <p>王者荣耀英雄识别，请上传你的游戏画面</p>
+</blockquote>
+<br>
 <!-- The file upload form used as target for the file upload widget -->
 <form id="fileupload" action="/upload" method="POST" enctype="multipart/form-data">
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -33,6 +40,69 @@
     <!-- The table listing the files available for upload/download -->
     <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 </form>
+
+    <br>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">支持的英雄列表</h3>
+    </div>
+    <div class="panel-body">
+        <ul>
+            <li>direnjie 狄仁杰</li>
+            <li>guanyu 关羽</li>
+            <li>nakelulu 娜可露露</li>
+            <li>liubei 刘备</li>
+            <li>lanlinwang 兰陵王</li>
+            <li>libai 李白</li>
+            <li>yadianna 雅典娜</li>
+            <li>bianque 扁鹊</li>
+            <li>makeboluo 马可波罗</li>
+            <li>donghuangtaiyi 东皇太一</li>
+            <li>zhouyu 周瑜</li>
+            <li>lvbu 吕布</li>
+            <li>huamulan 花木兰</li>
+            <li>luna 露娜</li>
+            <li>zhognkui 钟馗</li>
+            <li>houyi 后羿</li>
+            <li>lubanqihao 鲁班七号</li>
+            <li>anqila 安琪拉</li>
+            <li>sunwukong 孙悟空</li>
+            <li>juyoujin 橘右京</li>
+            <li>guiguzi 鬼谷子</li>
+            <li>zhongwuyan 钟无艳</li>
+            <li>yingzhen 嬴政</li>
+            <li>chengjisihan 成吉思汗</li>
+            <li>mozi 墨子</li>
+            <li>liyuanfang 李元芳</li>
+            <li>caocao 曹操</li>
+            <li>sunshagnxiagn 孙尚香</li>
+            <li>dianwei 典韦</li>
+            <li>bailishouyue 百里守约</li>
+            <li>jiangziya 姜子牙</li>
+            <li>taiyizhenren 太乙真人</li>
+            <li>zhugeliang 诸葛亮</li>
+            <li>kai 铠</li>
+            <li>damo 达摩</li>
+            <li>niumo 牛魔</li>
+            <li>zhaoyun 赵云</li>
+            <li>bailixuance 百里玄策</li>
+            <li>yangjian 杨戬</li>
+            <li>daqiao 大乔</li>
+            <li>daji 妲己</li>
+            <li>liushan 刘禅</li>
+            <li>huangzhong 黄忠</li>
+            <li>buzhihuowu 不知火舞</li>
+            <li>xiahoudun 夏侯惇</li>
+            <li>gongben 宫本武藏</li>
+            <li>yuji 虞姬</li>
+            <li>zhangliang 张良</li>
+            <li>caiwenji 蔡文姬</li>
+            <li>diaochan 貂蝉</li>
+            <li>chenyaojin 程咬金</li>
+            <li>ake 阿珂</li>
+        </ul>
+    </div>
+</div>
 </div>
 
 
@@ -67,13 +137,13 @@
             {% if (!i && !o.options.autoUpload) { %}
                 <button class="btn btn-primary start" disabled>
                     <i class="glyphicon glyphicon-upload"></i>
-                    <span>Start</span>
+                    <span>识别</span>
                 </button>
             {% } %}
             {% if (!i) { %}
                 <button class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel</span>
+                    <span>删除</span>
                 </button>
             {% } %}
         </td>
@@ -116,7 +186,7 @@
             {% } else { %}
                 <button class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel</span>
+                    <span>删除</span>
                 </button>
             {% } %}
         </td>
